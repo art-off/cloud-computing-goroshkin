@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app-1:
+    container_name: static-app-1
+    ports:
+      - "1231:80"
+    build: ./site1
+  app-2:
+    container_name: static-app-2
+    ports:
+      - "1232:80"
+    build: ./site2
+
+  nginx:
+    container_name: test-nginx
+    build: ./nginx
+    ports:
+      - "1233:80"
+    depends_on:
+      - app-1
+      - app-2
